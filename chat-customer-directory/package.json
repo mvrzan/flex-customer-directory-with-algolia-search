@@ -1,0 +1,31 @@
+{
+  "name": "chat-customer-directory",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "flex-plugin pre-script-check"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.15",
+    "@twilio-paste/core": "^17.1.0",
+    "@twilio-paste/icons": "^9.4.0",
+    "@twilio/flex-plugin-scripts": "6.0.3",
+    "algoliasearch": "^4.14.2",
+    "dotenv": "^16.0.3",
+    "prop-types": "^15.7.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-instantsearch-hooks-web": "^6.38.1"
+  },
+  "devDependencies": {
+    "@twilio/flex-ui": "2.0.0-beta.3",
+    "eslint": "^8.29.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "react-test-renderer": "17.0.2"
+  }
+}
