@@ -8,7 +8,36 @@ Twilio Flex Plugins allow you to customize the appearance and behavior of [Twili
 
 ## How it works
 
-UNDER CONSTRUCTION
+The _Chat Customer Directory Plugin_ enables agents to search for specific customers by name, before sending an individual or group SMS or WhatsApp message.
+
+![](./screenshots/customer_search.gif)
+
+Customer search component is powered by [Algolia search engine](https://www.algolia.com/). As agents search for customer, a request is send to the algolia search and the results are rendered back to the agent. Here is an example of the Algolia data structure:
+
+```
+[
+  {
+    "customerName": "Vatija Mrzan",
+    "number": "+1234567891"
+  },
+  {
+    "customerName": "Vudo Llieger",
+    "number": "+1234567810"
+  },
+  {
+    "customerName": "Fohn Jischelli",
+    "number": "+1234567811"
+  },
+]
+```
+
+> Please note that the above is just a simple example of how an external data structure could be configured. Production use cases and security aspects should be evaluated before implementation.
+
+The plugin also allows agents to send outbound SMS or WhatsApp message to both individual customers or initiate a group chat.
+
+![](./screenshots/send_sms.gif)
+
+When sending a WhatsApp message, the initial message has to be a pre-approved WhatsApp template. For more information about this process, please check my [blog post](https://www.twilio.com/blog/twilio-flex-whatsapp-integration-checklist).
 
 ## Development
 
@@ -94,7 +123,7 @@ Deployment Details
 Domain: xxx-xxx-xxxx-dev.twil.io
 
 Functions:
-   https://xxx-xxx-xxxx-dev.twil.io/agentExtensions
+   https://xxx-xxx-xxxx-dev.twil.io/sendMessage
 (more)
 ```
 

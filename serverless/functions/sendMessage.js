@@ -9,7 +9,7 @@ const openAChatTask = async (
   WorkerFriendlyName,
   routingProperties
 ) => {
-  const channelType = Customers.includes('whatsapp') ? 'whatsapp' : 'sms';
+  const channelType = Customers[0].startsWith('whatsapp') ? 'whatsapp' : 'sms';
   console.log(Customers, From, Body, WorkerFriendlyName, routingProperties);
 
   const participantsArray = Customers.map(number => {
