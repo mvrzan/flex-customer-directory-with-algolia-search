@@ -39,6 +39,16 @@ The plugin also allows agents to send outbound SMS or WhatsApp message to both i
 
 When sending a WhatsApp message, the initial message has to be a pre-approved WhatsApp template. For more information about this process, please check my [blog post](https://www.twilio.com/blog/twilio-flex-whatsapp-integration-checklist).
 
+![](./screenshots/send_whatsapp.gif)
+
+If you decide to send a group message, a new task will open for the agent right away. Chat communication is powered by the Conversations API.
+
+![](./screenshots/group_message.gif)
+
+## Architecture
+
+Coming soon!
+
 ## Development
 
 Run `twilio flex:plugins --help` to see all the commands we currently support. For further details on Flex Plugins refer to our documentation on the [Twilio Docs](https://www.twilio.com/docs/flex/developer/plugins/cli) page.
@@ -211,6 +221,44 @@ To deploy your plugin to specific accounts/environments use these commands:
 
 `twilio flex:plugins:deploy --profile:ProdProfileName`
 
+### Studio SendToFlex
+
+To handle the use case of inbound replies from the customer needing to create a task and optionally routing it to the agent that initiated the outbound message we will make use of the sendOutboundSMS function populating the converstations channel attributes.
+
+These are then available in the trigger and modifying the SendToFlex attributes as below will populate the task attributes for the TaskRouter Workflow.
+
+```
+{"KnownAgentRoutingFlag":"{{trigger.conversation.ChannelAttributes.KnownAgentRoutingFlag}}", "KnownAgentWorkerFriendlyName":"{{trigger.conversation.ChannelAttributes.KnownAgentWorkerFriendlyName}}"}
+```
+
+### TaskRouter Workflow
+
+This workflow assumes that studio has populated the Task Attributes with
+
+- AttributesKnownAgentRoutingFlag
+- KnownAgentWorkerFriendlyName
+
+```
+{
+  "task_routing": {
+    "filters": [
+      {
+        "filter_friendly_name": "Known Agent Routing Filter",
+        "expression": "KnownAgentRoutingFlag == \"true\"",
+        "targets": [
+          {
+            "queue": "WQxxxx",
+            "known_worker_friendly_name": "task.KnownAgentWorkerFriendlyName"
+          }
+        ]
+      }
+    ],
+    "default_filter": {
+      "queue": "WQxxxx"
+    }
+  }
+```
+
 ## License
 
 [MIT](http://www.opensource.org/licenses/mit-license.html)
@@ -218,3 +266,7 @@ To deploy your plugin to specific accounts/environments use these commands:
 ## Disclaimer
 
 This software is to be considered "sample code", a Type B Deliverable, and is delivered "as-is" to the user. Twilio bears no responsibility to support the use or implementation of this software.
+
+### Kudos
+
+Special thanks to [Darren Hamilton](https://github.com/dahamilton-twilio) for his work on the outbound messaging panel plugin.
