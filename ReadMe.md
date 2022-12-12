@@ -12,7 +12,7 @@ The _Chat Customer Directory Plugin_ enables agents to search for specific custo
 
 ![](./screenshots/customer_search.gif)
 
-Customer search component is powered by [Algolia search engine](https://www.algolia.com/). As agents search for customer, a request is send to the algolia search and the results are rendered back to the agent. Here is an example of the Algolia data structure:
+Customer search component is powered by [Algolia search engine](https://www.algolia.com/). As agents search for customer, a request is sent to the algolia search and the results are rendered back to the agent. Here is an example of the Algolia data structure:
 
 ```
 [
@@ -45,9 +45,21 @@ If you decide to send a group message, a new task will open for the agent right 
 
 ![](./screenshots/group_message.gif)
 
+## Algolia Search Setup
+
+The search engine behind the customer search is [Algolia](https://www.algolia.com/).
+
 ## Architecture
 
 ![](./screenshots/customer-search-algolia.png)
+
+## Limitations and improvements
+
+**WhatsApp Templates**
+At the time of creating this template, there are no APIs that would allow you to fetch a list of approved WhatsApp templates from the Twilio console. Therefore, it is necessary to hardcode the approved template values somewhere. This plugin is currently storing template values in the Flex plugin; however, a better option would be to store them as a part of the serverless function assets and fetching them via separate HTTP call. This approach would allow for independent updates from the Flex UI.
+
+**Outbound message limit**
+When sending multiple individual messages (either SMS or WhatsApp), it is possible to hit the 10 seconds serverless function execution limit. Depending on the number of customers, you might want to consider a queuing mechanism or batching your requests.
 
 ## Development
 
@@ -266,6 +278,8 @@ This workflow assumes that studio has populated the Task Attributes with
 ## Disclaimer
 
 This software is to be considered "sample code", a Type B Deliverable, and is delivered "as-is" to the user. Twilio bears no responsibility to support the use or implementation of this software.
+
+Any resemblance within the plugin to real persons, living or dead, is purely coincidental.
 
 ### Kudos
 
