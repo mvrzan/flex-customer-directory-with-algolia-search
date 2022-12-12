@@ -12,7 +12,30 @@ The _Chat Customer Directory Plugin_ enables agents to search for specific custo
 
 ![](./screenshots/customer_search.gif)
 
-Customer search component is powered by [Algolia search engine](https://www.algolia.com/). As agents search for customer, a request is sent to the algolia search and the results are rendered back to the agent. Here is an example of the Algolia data structure:
+Customer search component is powered by [Algolia search engine](https://www.algolia.com/). As agents search for customer, a request is sent to the algolia search and the results are rendered back to the agent.
+
+The plugin also allows agents to send outbound SMS or WhatsApp message to both individual customers or initiate a group chat.
+
+![](./screenshots/send_sms.gif)
+
+When sending a WhatsApp message, the initial message has to be a pre-approved WhatsApp template. For more information about this process, please check my [blog post](https://www.twilio.com/blog/twilio-flex-whatsapp-integration-checklist).
+
+![](./screenshots/send_whatsapp.gif)
+
+If you decide to send a group message, a new task will open for the agent right away. Chat communication is powered by the Conversations API.
+
+![](./screenshots/group_message.gif)
+
+## Algolia Search Setup
+
+For the Algolia search to work with this use case, there are a few required steps. The first on is to add the Algolia Application ID and Search Only API Key into the .env file:
+
+```
+REACT_APP_ALGOLIA_APPLICATION_ID=xxxx
+REACT_APP_ALGOLIA_SEARCH_ONLY_API_KEY=xxxx
+```
+
+The next step is to have the project json data structure within Algolia. Here is an example of the Algolia data structure:
 
 ```
 [
@@ -31,21 +54,9 @@ Customer search component is powered by [Algolia search engine](https://www.algo
 ]
 ```
 
+And that is it! You will be able to search for customer via their names within the Flex UI.
+
 > Please note that the above is just a simple example of how an external data structure could be configured. Production use cases and security aspects should be evaluated before implementation.
-
-The plugin also allows agents to send outbound SMS or WhatsApp message to both individual customers or initiate a group chat.
-
-![](./screenshots/send_sms.gif)
-
-When sending a WhatsApp message, the initial message has to be a pre-approved WhatsApp template. For more information about this process, please check my [blog post](https://www.twilio.com/blog/twilio-flex-whatsapp-integration-checklist).
-
-![](./screenshots/send_whatsapp.gif)
-
-If you decide to send a group message, a new task will open for the agent right away. Chat communication is powered by the Conversations API.
-
-![](./screenshots/group_message.gif)
-
-## Algolia Search Setup
 
 The search engine behind the customer search is [Algolia](https://www.algolia.com/).
 
