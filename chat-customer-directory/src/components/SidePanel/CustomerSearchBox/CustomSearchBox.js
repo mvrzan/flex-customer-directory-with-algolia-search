@@ -11,7 +11,7 @@ const emptyStateHandler = () => (
   </Box>
 );
 
-const CustomSearchBox = props => {
+const CustomSearchBox = ({ customersHandler, ...props }) => {
   const [customerValue, setCustomerValue] = useState([]);
 
   const { refine } = useSearchBox(props);
@@ -24,8 +24,8 @@ const CustomSearchBox = props => {
   };
 
   useEffect(() => {
-    props.customersHandler(customerValue);
-  }, [customerValue, props]);
+    customersHandler(customerValue);
+  }, [customerValue, customersHandler]);
 
   return (
     <Box>

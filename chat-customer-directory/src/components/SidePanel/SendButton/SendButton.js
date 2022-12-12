@@ -1,13 +1,9 @@
 import { Button, Box } from '@twilio-paste/core';
 
-const SendButton = props => {
+const SendButton = ({ isVisible, sendMessage }) => {
   return (
     <Box padding="space50">
-      <Button
-        variant="primary"
-        disabled={!props.isVisible}
-        onClick={props.sendMessage}
-      >
+      <Button variant="primary" disabled={!isVisible} onClick={sendMessage}>
         Send message
       </Button>
     </Box>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Box, TextArea, Label } from '@twilio-paste/core';
 
-const MessageContainer = props => {
+const MessageContainer = ({ typedMessage }) => {
   const [messageBody, setMessageBody] = useState('');
 
   const typedMessageHandler = event => {
@@ -9,8 +9,8 @@ const MessageContainer = props => {
   };
 
   useEffect(() => {
-    props.messageBody(messageBody);
-  }, [messageBody, props]);
+    typedMessage(messageBody);
+  }, [messageBody, typedMessage]);
 
   return (
     <Box padding="space50">

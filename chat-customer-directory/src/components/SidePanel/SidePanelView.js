@@ -14,7 +14,7 @@ import { StyledSidePanel, Container } from './SidePanelStyles';
 import WhatsAppMessages from './OutboundMessage/WhatsAppMessages';
 import onSendClickHandler from '../../utils/sendMessageHandler/sendMessageHandler';
 
-const SidePanelView = props => {
+const SidePanelView = ({ theme: { OutboundDialerPanel }, theme }) => {
   const [isSendButtonVisible, setIsSendButtonVisible] = useState(false);
   const [isAlertVisible, setAlertVisible] = useState(false);
   const [messageObject, setMessageObject] = useState({});
@@ -98,7 +98,7 @@ const SidePanelView = props => {
         title="Send Outbound Message"
         isHidden={isPanelHidden}
         handleCloseClick={closeSidePanelHandler}
-        themeOverride={props.theme && props.theme.OutboundDialerPanel}
+        themeOverride={theme && OutboundDialerPanel}
       >
         <Box>
           <Stack orientation="vertical" spacing="space20">
@@ -115,7 +115,7 @@ const SidePanelView = props => {
             {messageObject.messageType === 'WhatsApp' ? (
               <WhatsAppMessages whatsappTemplate={whatsappTemplateHandler} />
             ) : (
-              <MessageContainer messageBody={typedMessageHandler} />
+              <MessageContainer typedMessage={typedMessageHandler} />
             )}
             {isAlertVisible && <AlertMessage messageObject={messageObject} />}
             <SendButton

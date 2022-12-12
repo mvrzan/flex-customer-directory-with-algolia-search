@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Combobox, Box, Text } from '@twilio-paste/core';
 import { WhatsAppTemplates } from '../../../utils/WhatsAppTemplates/whatsappTemplates';
 
-const WhatsAppMessages = props => {
+const WhatsAppMessages = ({ whatsappTemplate }) => {
   const [filteredTemplates, setFilteredTemplates] = useState(WhatsAppTemplates);
   const [templateValue, setTemplateValue] = useState();
 
@@ -29,11 +29,11 @@ const WhatsAppMessages = props => {
 
   useEffect(() => {
     if (templateValue === '' || templateValue === undefined) {
-      props.whatsappTemplate('');
+      whatsappTemplate('');
     } else {
-      props.whatsappTemplate(templateValue);
+      whatsappTemplate(templateValue);
     }
-  }, [templateValue, props]);
+  }, [templateValue, whatsappTemplate]);
 
   const noResultsHandler = () => {
     return (

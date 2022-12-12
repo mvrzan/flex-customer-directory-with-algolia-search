@@ -4,7 +4,7 @@ import { Radio, RadioGroup, Box } from '@twilio-paste/core';
 import SmsRadioOption from './SmsRadioOption';
 import WhatsAppRadioOption from './WhatsAppRadioOption';
 
-const RadioOptions = props => {
+const RadioOptions = ({ messageProperties }) => {
   const [messageType, setMessageType] = useState('SMS');
   const [messageTarget, setMessageTarget] = useState('individual');
 
@@ -21,7 +21,7 @@ const RadioOptions = props => {
   };
 
   useEffect(() => {
-    props.messageProperties(messageTarget, messageType);
+    messageProperties(messageTarget, messageType);
   }, [messageTarget, messageType]);
 
   return (
