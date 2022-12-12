@@ -26,6 +26,13 @@ const SidePanelView = ({ theme: { OutboundDialerPanel }, theme }) => {
     state => !state.flex.view.componentViewStates?.sidePanelState?.hidden
   );
 
+  const messageItem = {
+    group: 'group',
+    individual: 'individual',
+    sms: 'SMS',
+    whatsapp: 'WhatsApp',
+  };
+
   const closeSidePanelHandler = () => Actions.invokeAction('ToggleSidePanel');
 
   const alertMessageHandler = (messageTarget, messageType) => {
@@ -35,13 +42,13 @@ const SidePanelView = ({ theme: { OutboundDialerPanel }, theme }) => {
       messageType,
     }));
 
-    if (messageTarget === 'group') {
+    if (messageTarget === messageItem.group) {
       setAlertVisible(true);
     } else {
       setAlertVisible(false);
     }
 
-    if (messageType === 'WhatsApp') {
+    if (messageType === messageItem.whatsapp) {
       setIsSendButtonVisible(false);
     }
   };
@@ -76,20 +83,27 @@ const SidePanelView = ({ theme: { OutboundDialerPanel }, theme }) => {
   useEffect(() => {
     if (
       message !== '' &&
-      messageObject.messageType === 'SMS' &&
+      messageObject.messageType === messageItem.sms &&
       customers.length !== 0
     ) {
       setIsSendButtonVisible(true);
     } else if (
       whatsAppMessage !== '' &&
-      messageObject.messageType === 'WhatsApp' &&
+      messageObject.messageType === messageItem.whatsapp &&
       customers.length !== 0
     ) {
       setIsSendButtonVisible(true);
     } else {
       setIsSendButtonVisible(false);
     }
-  }, [message, customers, messageObject, whatsAppMessage]);
+  }, [
+    message,
+    customers,
+    messageObject,
+    whatsAppMessage,
+    messageItem.sms,
+    messageItem.whatsapp,
+  ]);
 
   return (
     <Container>
