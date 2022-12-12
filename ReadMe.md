@@ -67,9 +67,11 @@ The search engine behind the customer search is [Algolia](https://www.algolia.co
 ## Limitations and improvements
 
 **WhatsApp Templates**
+
 At the time of creating this template, there are no APIs that would allow you to fetch a list of approved WhatsApp templates from the Twilio console. Therefore, it is necessary to hardcode the approved template values somewhere. This plugin is currently storing template values in the Flex plugin; however, a better option would be to store them as a part of the serverless function assets and fetching them via separate HTTP call. This approach would allow for independent updates from the Flex UI.
 
 **Outbound message limit**
+
 When sending multiple individual messages (either SMS or WhatsApp), it is possible to hit the 10 seconds serverless function execution limit. Depending on the number of customers, you might want to consider a queuing mechanism or batching your requests.
 
 ## Development
