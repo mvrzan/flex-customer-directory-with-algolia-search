@@ -47,7 +47,7 @@ If you decide to send a group message, a new task will open for the agent right 
 
 ## Architecture
 
-Coming soon!
+![](./screenshots/customer-search-algolia.png)
 
 ## Development
 
