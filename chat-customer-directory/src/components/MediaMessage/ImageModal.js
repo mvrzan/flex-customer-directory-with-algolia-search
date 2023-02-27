@@ -16,7 +16,7 @@ export const ImageModal = () => {
     state => state.flex.view.componentViewStates.modalOpen
   );
 
-  const handleClose = () => {
+  const closeHandler = () => {
     Actions.invokeAction('OpenImageModal', {
       url: url,
       isModalOpen: !modalOpen,
@@ -33,7 +33,7 @@ export const ImageModal = () => {
     <Modal
       ariaLabelledby={modalHeadingID}
       isOpen={modalOpen?.isModalOpen}
-      onDismiss={handleClose}
+      onDismiss={closeHandler}
       size="wide"
     >
       <ModalHeader>

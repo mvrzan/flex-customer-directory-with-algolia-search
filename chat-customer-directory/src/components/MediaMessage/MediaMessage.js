@@ -11,7 +11,7 @@ export const MediaMessage = ({ mediaUrl, mediaType }) => {
         <img
           src={mediaUrl}
           alt={mediaType}
-          width="450px"
+          width="150px"
           onClick={() =>
             Actions.invokeAction('OpenImageModal', { url: mediaUrl })
           }
