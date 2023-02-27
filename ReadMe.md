@@ -60,6 +60,16 @@ And that is it! You will be able to search for customer via their names within t
 
 The search engine behind the customer search is [Algolia](https://www.algolia.com/).
 
+## Media support
+
+This plugin also enables media support within the Flex UI. This means that you will be able to view images, play video, and listen to audio messages directly from the Flex UI, instead of opening them in a new tab or downloading them.
+
+![](./screenshots/media-support.png)
+
+### How does media support work?
+
+Conversations API has a native support for media; however, Flex UI does not. In order to display the media within the Flex UI, we have to replace the [MessageBubbleComponent](https://assets.flex.twilio.com/docs/releases/flex-ui/2.1.0/programmable-components/components/MessageBubble/) with a custom component that uses HTML5 tags to render the media to the Worker/Agent.
+
 ## Architecture
 
 ![](./screenshots/customer-search-algolia.png)
