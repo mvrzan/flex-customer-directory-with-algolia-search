@@ -21,7 +21,6 @@ const SidePanelView = ({ theme: { OutboundDialerPanel }, theme }) => {
   const [customers, setCustomers] = useState([]);
   const [message, setMessage] = useState('');
   const [whatsAppMessage, setWhatsAppMessage] = useState('');
-
   const isPanelHidden = useFlexSelector(
     state => !state.flex.view.componentViewStates?.sidePanelState?.hidden
   );

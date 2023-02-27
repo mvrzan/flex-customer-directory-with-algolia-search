@@ -4,7 +4,8 @@ import { CustomizationProvider } from '@twilio-paste/core/customization';
 
 import TopNavigation from './components/TopNavigation/topnavigation';
 import SidePanelView from './components/SidePanel/SidePanelView';
-import './utils/actions/toggleSidePanelAction';
+import { MessageBubbleWrapper } from './components/MessageBubbleWrapper/MessageBubbleWrapper';
+import './utils/actions/flexReduxActions';
 import './utils/actions/sendMessageAction';
 import registerNotifications from './utils/notifications/notifications';
 
@@ -32,6 +33,14 @@ export default class ChatCustomerDirectoryPlugin extends FlexPlugin {
 
     // add the custom side panel view into the main Flex container
     flex.MainContainer.Content.add(<SidePanelView key="outbound-chat-panel" />);
+
+    //  remove the default message bubble if the body of the message contains media
+    flex.MessageBubble.Content.replace(
+      <MessageBubbleWrapper key={'message-bubble'} />,
+      {
+        if: props => props.message.source.media,
+      }
+    );
 
     // initialize the SidePanelView component
     SidePanelView(flex, manager);
